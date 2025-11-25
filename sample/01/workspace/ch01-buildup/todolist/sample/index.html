@@ -18,7 +18,7 @@
           <li>
             <h2>할일 목록</h2>
             <div class="todoinput">
-              <input type="text" onkeydown="handleAddKeydown(event)" autofocus>
+              <input type="text" onkeydown="handleAddKeyUp(event)" autofocus>
               <button type="button" onclick="handleAdd()">추가</button>
             </div>
             <ul class="todolist">
@@ -155,8 +155,8 @@
     };
 
     // 엔터 이벤트 핸들러
-    const handleAddKeydown = (event) => {
-      console.log('keydown', event);
+    const handleAddKeyUp = (event) => {
+      console.log('keyup', event);
 
     };
 
