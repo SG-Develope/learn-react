@@ -89,6 +89,7 @@
       );
     }
 
+    // Props
     function TodoItem({ item, toggleDone, deleteItem }){
       return (
         Reaction.createElement('li', { 'data-num': item.num },
@@ -107,6 +108,7 @@
         { num: 3, title: 'React 공부', done: false },
       ];
 
+      // State
       const [ itemList, setItemList ] = Reaction.useState(initItemList);
 
       // 할일 추가
