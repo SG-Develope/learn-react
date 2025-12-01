@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter</title>
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Counter - 01 Counter - React로 구현(React.createElement)</h1>
+        <p>파일 경로: <span id="filepath"></span></p>
+      </header>
+      <div id="counter">
+        <button type="button" onclick="handleDown()">-</button>
+        <button type="button" onclick="handleReset(event)">0</button>
+        <button type="button" onclick="handleUp()">+</button>
+        <span>0</span>
+      </div>
+    </div>
+
+    <div id="root"></div>
+
+    <script type="module">
+      // 헤더 컴포넌트
+      function Header() {
+        console.log("Header 렌더링됨.");
+        return React.createElement(
+          "header",
+          null,
+          React.createElement(
+            "h1",
+            null,
+            "Counter - 07 상태(데이터) 변경시 자동으로 UI 리렌더링"
+          ),
+          React.createElement(
+            "p",
+            null,
+            "파일 경로: ",
+            React.createElement(
+              "span",
+              null,
+              `ch${document.URL.split("/ch")[1]}index.html`
+            )
+          )
+        );
+      }
+
+      // Counter 컴포넌트
+      function Counter() {
+        console.log("Counter 렌더링됨.");
+        // 상태
+        const [count, setCount] = React.useState(5);
+
+        // 카운터 감소
+        const handleDown = () => {
+          setCount(count - 1);
+        };
+
+        // 카운터 증가
+        const handleUp = () => {
+          setCount(count + 1);
+        };
+
+        // 카운터 초기화
+        const handleReset = (event) => {
+          console.log(event);
+          setCount(0);
+        };
+
+         return (
+        React.createElement('div', { id: 'counter' }, 
+
+          // 태그의 onclick 속성으로 이벤트 핸들러를 지정하면 전역 스코프에서 찾음
+          // 컴포넌트 내부에 이벤트 핸들러가 정의되어 있기 때문에 찾을 수 없음
+          // React.createElement('button', { type: 'button', onclick: 'handleDown()' }, '-'), 
+          // React.createElement('button', { type: 'button', onclick: 'handleReset(event)' }, 0), 
+          // React.createElement('button', { type: 'button', onclick: 'handleUp()' }, '+'), 
+
+          React.createElement('button', { type: 'button', onClick: handleDown }, '-'), 
+          React.createElement('button', { type: 'button', onClick: handleReset }, 0), 
+          React.createElement('button', { type: 'button', onClick: handleUp }, '+'), 
+          React.createElement('span', null, count))
+      );
+      }
+      // App 컴포넌트
+      function App() {
+        console.log("App 렌더링됨.");
+        return React.createElement("div", { id: "app" },
+        React.createElement(Header),
+          React.createElement(Counter));
+      }
+
+
+      ReactDOM.createRoot(document.querySelector('#root')).render(
+  React.createElement(App)
+);
+
+
+    </script>
+
+    <script>
+      document.querySelector("#filepath").textContent = `ch${
+        document.URL.split("/ch")[1]
+      }index.html`;
+    </script>
+  </body>
+</html>
