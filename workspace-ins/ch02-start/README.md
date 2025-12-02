@@ -134,6 +134,15 @@
     ➜  press h + enter to show help
   ```
 
+  ```bash
+  # 생성한 프로젝트 폴더로 이동
+  cd 09
+  # 필요 패키지 설치
+  npm i
+  # 개발 서버 실행
+  npm run dev
+  ```
+
 * npm init vite에서 vite는 initializer이며 create- 접두사로 시작하는 Node.js 모듈을 이용해 프로젝트의 초기 구성을 해줌
   - npm init vite
     + npx create-vite 실행
@@ -189,8 +198,9 @@
   ```
 * 프로젝트 빌드
   - dist 폴더에 프로덕션 배포용 파일 생성
-  - JSX 문법을 Javascript 코드로 변환
-  - 트랜스파일링: ES6+ 문법을 지원하지 않는 구 버전의 브라우저를 위해 ES5 수준의 코드로 변환
+  - 트랜스파일링(컴파일)
+    + JSX 문법을 Javascript 코드로 변환
+    + ES6+ 문법을 지원하지 않는 구 버전의 브라우저를 위해 ES5 수준의 코드로 변환
   - 압축: 주석 제거, 변수명 축약, 화이트 스페이스 제거
   - 번들링: 여러 자바스크립트 파일을 하나 또는 몇개의 파일로 묶는 작업 (Webpack, Rollup, Parcel, Esbuild 등)
   - 트리 쉐이킹: 번들링 과정에서 불필요한 코드(사용하지 않는 함수나 모듈)를 식별하고 제거
@@ -327,7 +337,49 @@
     { itemList.map(item => item.title) }
     ```
 
-5 보간된 HTML 문자열은 인코딩됨
+5 style 속성은 객체 형태로 전달해야 한다.
+* HTML에서는 style 속성을 문자열로 작성하지만 JSX에서는 객체 형태로 전달해야 함
+* CSS 속성명은 카멜 표기법(camel case)을 사용해야 함
+  - `background-color` -> `backgroundColor`
+  - `font-size` -> `fontSize`
+  - `margin-top` -> `marginTop`
+
+* HTML에서 style 속성 추가
+  ```html
+  <div style="background-color: red; font-size: 20px;">Hello</div>
+  ```
+
+* JSX에서 style 속성 추가
+  ```jsx
+  <div style={{ backgroundColor: 'red', fontSize: '20px' }}>Hello</div>
+  ```
+
+* JSX에서 style 속성을 동적으로 추가
+  ```jsx
+  const divStyle = {
+    backgroundColor: 'red',
+    fontSize: '20px',
+    marginTop: '10px'
+  };
+  <div style={divStyle}>Hello</div>
+  ```
+
+* 변수를 사용한 동적 스타일
+  ```jsx
+  const color = 'blue';
+  const size = 24;
+  <div style={{ color: color, fontSize: `${size}px` }}>Hello</div>
+  ```
+
+* 주의사항
+  - 숫자 값은 자동으로 `px` 단위가 붙지만, 단위가 필요한 경우 문자열로 작성해야 함
+    ```jsx
+    <div style={{ width: 100 }}>        // width: 100px
+    <div style={{ width: '100%' }}>     // width: 100%
+    <div style={{ width: '100rem' }}>   // width: 100rem
+    ```
+
+6 보간된 HTML 문자열은 인코딩됨
 * { } 내부의 값이 HTML 코드가 포함된 문자열인 경우 HTML 태그를 인코딩해서 처리하므로 브라우저에는 태그가 그대로 보여짐
   - XSS (Cross Site Scripting) 같은 공격에 대비하기 위한 규칙
 
@@ -358,6 +410,30 @@
       return <span>Hello { msg }</span>
     }
     ```
+
+7 주석은 { /* */ } 형태로 작성해야 한다.
+* JSX 내부에서는 일반 JavaScript 주석(`//`, `/* */`)을 직접 사용할 수 없고, 중괄호로 감싸서 표현식으로 작성해야 함
+
+* 잘못된 주석 작성
+  ```jsx
+  <div>
+    // 이것은 주석이 아님
+    /* 이것도 주석이 아님 */
+    <h1>Hello</h1>
+  </div>
+  ```
+
+* 올바른 주석 작성
+  ```jsx
+  <div>
+    {/* 이것은 주석입니다 */}
+    <h1>Hello</h1>
+    {/*
+      여러 줄 주석도
+      이렇게 작성할 수 있습니다
+    */}
+  </div>
+  ```
 
 # 5. 속성 (Props)
 * 부모 컴포넌트에서 자식 컴포넌트로 데이터를 전달할 때 사용
