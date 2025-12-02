@@ -111,7 +111,7 @@
 * 02 SPA(Single Page Application)
   * Todo List 작성(vanillaJS + Lib)
     - 💻 [06 Reaction.createElement() 사용해서 UI 구성](./workspace-ins/ch01-buildup/todolist/06/index.html)
-      + workspace/ch01-buildup/todolist/06 폴더 복사해서 07 폴더 생성
+      + workspace/ch01-buildup/todolist/sample 폴더 복사해서 06 폴더 생성
       + workspace/ch01-buildup/counter/07/reaction.js를 workspace/ch01-buildup/todolist 폴더에 복사
     - 💻 [07 UI 구성 요소별 각각의 함수로 분리(컴포넌트로 만들기)](./workspace-ins/ch01-buildup/todolist/07/index.html)
       + workspace/ch01-buildup/todolist/06 폴더 복사해서 07 폴더 생성
@@ -163,10 +163,77 @@
 <summary><h3>4일차(2025.12.01 월)</h3></summary>
 
 #### 오전(3시간)
-
+* 03 React
+  - 💻 [03 Todo List - React로 UI 구성(JSX)](./workspace-ins/ch01-buildup/react/03/index.html)
+    + workspace/ch01-buildup/react/sample/todolist 폴더 복사해서 workspace/ch01-buildup/react/03 폴더 생성
+  - 💻 [04 Todo List - React 컴포넌트 분리](./workspace-ins/ch01-buildup/react/04/index.html)
+    + workspace/ch01-buildup/react/03 폴더 복사해서 workspace/ch01-buildup/react/04 폴더 생성
+  - 💻 [05 Todo List - React 기능 추가](./workspace-ins/ch01-buildup/react/05/index.html)
+    + workspace/ch01-buildup/react/04 폴더 복사해서 workspace/ch01-buildup/react/05 폴더 생성
 
 #### 오후(3시간)
+* 02 SPA(Single Page Application)
+  * Counter(라이브리리 개발) 작성
+    - 💻 [08 컴포넌트를 모듈로 분리](./workspace-ins/ch01-buildup/counter/08/index.html)
+      + workspace/ch01-buildup/counter/07 폴더 복사해서 08 폴더 생성
+  * Todo List 작성(vanillaJS + Lib)
+    - 💻 [09 컴포넌트를 모듈로 분리](./workspace-ins/ch01-buildup/todolist/09/index.html)
+      + workspace/ch01-buildup/todolist/08 폴더 복사해서 09 폴더 생성
+* 03 React
+  - 💻 [06 Todo List - React 컴포넌트를 모듈로 분리](./workspace-ins/ch01-buildup/react/06)
+    + workspace/ch01-buildup/react 폴더에서 다음 명령 실행
+    ```bash
+    npm create vite@latest 06
+    ```
 
+    ```bash
+    Need to install the following packages:
+    create-vite@8.0.2
+    Ok to proceed? (y) y
+
+    Select a framework:
+    │  ○ Vanilla
+    │  ○ Vue
+    │  ● React
+    │  ○ Preact
+    │  ...
+    │
+    ◆  Select a variant:
+    │  ● TypeScript
+    │  ○ TypeScript + React Compiler
+    │  ○ TypeScript + SWC
+    │  ○ JavaScript
+    │  ...
+    │
+    ◆  Use rolldown-vite (Experimental)?:
+    │  ○ Yes
+    │  ● No
+    │
+    ◆  Install with npm and start now?
+    │  ● Yes / ○ No
+    │
+    ◇  Scaffolding project in C:/febc15/...06/...
+    │
+    ◇  Installing dependencies with npm...
+
+    added 177 packages, and audited 178 packages in 14s
+
+    45 packages are looking for funding
+      run `npm fund` for details
+
+    found 0 vulnerabilities
+    │
+    ◇  Starting dev server...
+
+    > 06@0.0.0 dev
+    > vite
+
+      VITE v7.1.12  ready in 820 ms
+
+      ➜  Local:   http://localhost:5173/
+      ➜  Network: use --host to expose
+      ➜  press h + enter to show help
+    ```
 
 </details>
 
