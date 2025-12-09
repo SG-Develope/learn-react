@@ -10,7 +10,7 @@ function App() {
   const [amount, setAmount] = useState<number>(0);
 
 
-  const exchangeRateHandler = () => {
+  const exchangeRateHandler = (from: string, to: string) => {
     axios
       .get(`https://api.exchangerate-api.com/v4/latest/${from}`)
       .then(response => {
@@ -22,8 +22,15 @@ function App() {
   };
 
   const exchangeHandler = () => {
+
+    const toChange = from;
+    const fromChange = to;
+
     setFrom(to);
     setTo(from);
+
+    exchangeRateHandler(fromChange, toChange);
+
   };
 
 
@@ -70,7 +77,7 @@ function App() {
         </div>
 
         <div className="row" style={{ marginTop: "12px" }}>
-          <button id="convert" onClick={exchangeRateHandler}>
+          <button id="convert" onClick={() =>exchangeRateHandler(from,to)}>
             변환
           </button>
           <button id="swap" type="button" onClick={exchangeHandler}>
