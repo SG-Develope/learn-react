@@ -1,4 +1,4 @@
-import { useState, type KeyboardEvent } from "react";
+import { useRef, useState, type KeyboardEvent } from "react";
 
 interface TodoInputProps {
   addItem: (title: string) => void;
@@ -8,6 +8,9 @@ function TodoInput({ addItem }: TodoInputProps){
   console.log('\t\tTodoInput 렌더링');
 
   const [title, setTitle] = useState('');
+  const inputElem = useRef<HTMLInputElement>(null);
+
+  
 
   // 추가 버튼 클릭 이벤트 핸들러
   const handleAdd = () => {
@@ -15,6 +18,9 @@ function TodoInput({ addItem }: TodoInputProps){
       addItem(title);
       setTitle('');
     }
+
+    inputElem.current?.focus();
+
   };
 
   // 엔터 이벤트 핸들러
@@ -25,7 +31,7 @@ function TodoInput({ addItem }: TodoInputProps){
 
   return (
     <div className="todoinput">
-      <input type="text" autoFocus value={ title } onChange={ (e) => setTitle(e.target.value) } onKeyDown={ handleAddKeydown } />
+      <input type="text" ref={inputElem} autoFocus value={ title } onChange={ (e) => setTitle(e.target.value) } onKeyDown={ handleAddKeydown } />
       <button type="button" onClick={ handleAdd }>추가</button>
     </div>
   );

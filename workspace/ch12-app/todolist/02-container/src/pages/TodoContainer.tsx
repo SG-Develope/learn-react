@@ -1,10 +1,10 @@
-import Todo from "@pages/Todo";
-import type { TodoItem } from "@pages/TodoItem";
-import TodoItem from "@pages/TodoItem";
-import { useReducer, useRef, useState } from "react";
-import todoReducer from "./todoReducer";
+import { useState } from "react";
+import Todo from "./Todo";
+import type { TodoItem } from "./TodoItem";
 
 function TodoContainer() {
+  console.log("\tTodo 렌더링");
+
   // 샘플 목록
   const initItemList: TodoItem[] = [
     { _id: 1, title: "자바스크립트 공부", done: true },
@@ -13,30 +13,30 @@ function TodoContainer() {
   ];
 
   // 상태가 수정되면 자동으로 화면이 리렌더링 된다.
-  // const [itemList, setItemList] = useState(initItemList);
-  const [itemList, todoDispatch] = useReducer(todoReducer, initItemList);
-
-  const itemNUm = useRef(initItemList.length);
+  const [itemList, setItemList] = useState(initItemList);
 
   // 할일 추가
   const addItem = (title: string) => {
     const item: TodoItem = {
-      _id: ++itemNUm.current || 1,
+      _id: itemList[itemList.length - 1]?._id + 1 || 1,
       title,
       done: false,
     };
-    todoDispatch({type:"ADD",value:item});
+    setItemList([...itemList, item]);
   };
 
   // 완료/미완료 처리
   const toggleDone = (_id: number) => {
-    todoDispatch({ type: "TOGGLE", value: { _id } });
+    const newItemList = itemList.map((item) =>
+      item._id === _id ? { ...item, done: !item.done } : item
+    );
+    setItemList(newItemList);
   };
 
   // 할일 삭제
   const deleteItem = (_id: number) => {
     const newItemList = itemList.filter((item) => item._id !== _id);
-    todoDispatch({ type: "DELETE", value: {_id} });
+    setItemList(newItemList);
   };
 
   return (
