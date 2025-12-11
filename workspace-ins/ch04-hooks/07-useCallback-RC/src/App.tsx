@@ -4,6 +4,8 @@ import Shipping from "@/Shipping";
 import { useCallback, useState } from "react";
 
 function App() {
+  "use no memo"; // React Compiler에 의한 자동 메모이제이션 사용 안함
+
   console.log('App 렌더링');
 
   const data = {
@@ -29,13 +31,13 @@ function App() {
   };
 
   // 결제 버튼 클릭 시 호출되는 이벤트 핸들러
-  const handlePayment = useCallback(() => {
+  const handlePayment = () => {
     alert(`배송비 ${shippingPrice.toLocaleString()}원이 추가됩니다. 결제하시겠습니까?`);
-  }, [ shippingPrice ]);
+  };
 
   return (
     <>
-      <h1>06 useCallback(함수 자체를 memoize), React.memo(컴포넌트를 memoize)</h1>
+      <h1>07 React Compiler를 사용한 메모이제이션</h1>
       <Product { ...data } />
       <Price 
         price={ data.price }

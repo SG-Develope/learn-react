@@ -24,5 +24,5 @@ function Product({ name, price, mainImage, content }: ProductProps) {
   );
 }
 
-// export default Product;
-export default React.memo(Product); // 컴포넌트를 메모이제이션 함
+export default Product;
+// export default React.memo(Product); // 컴포넌트를 메모이제이션 함
