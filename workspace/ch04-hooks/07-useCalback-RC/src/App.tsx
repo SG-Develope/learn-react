@@ -29,21 +29,19 @@ function App() {
     setQuantity(Number(e.target.value));
   };
 
-  //생성될때마다 새 객체 생성이라서 shipping 값 변동없어도 계속 리렌더링된다 (memo설정된상태)-> 때문에 useCallback사용;
-  // const handlePayment = () => {
-  //   const productprice = data.price * quantity
-  //   const totalPrice = productprice + shippingPrice
+  //생성될때마다 새 객체 생성이라서 shipping 값 변동없어도 계속 리렌더링된다 (memo설정된상태)-> 때문에 useCallback사용; -> react 19 나오고나서 컴파일러 패키지 생성
+  const handlePayment = () => {
+    const productprice = data.price * quantity
+    const totalPrice = productprice + shippingPrice
 
-  //   alert(`${totalPrice.toLocaleString()}원을 결제하시겠습니까?`);
-  // }
-  const handlePayment = useCallback(() => {
-    alert(`${shippingPrice.toLocaleString()}원을 결제하시겠습니까?`);
-  }, []);
+    alert(`${totalPrice.toLocaleString()}원을 결제하시겠습니까?`);
+  }
+
 
   return (
     <>
       <h1>
-        06 useCallback(함수 자체를 memoize), React.memo(컴포넌트를 memoize)
+        07 useCallback(함수 자체를 memoize), React.memo(컴포넌트를 memoize) 제거후 패키지이용예제
       </h1>
 
       <Product {...data} />

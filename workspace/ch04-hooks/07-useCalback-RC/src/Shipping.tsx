@@ -25,4 +25,4 @@ function Shipping({ fees, handlePayment }: shippingProps) {
   );
 }
 
-export default React.memo(Shipping);
+export default Shipping;
