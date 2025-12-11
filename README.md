@@ -412,10 +412,38 @@
 <summary><h3>11일차(2025.12.10 수)</h3></summary>
 
 #### 오전(3시간)
-
+- 🔊 [useReducer](./workspace-ins/ch04-hooks#usereducer)
+  + 💻 [03 useReducer - 상태 관리 로직을 한곳에](./workspace-ins/ch04-hooks/03-useReducer)
+    + workspace/ch04-hooks/01-useState 폴더 복사해서 workspace/ch04-hooks/03-useReducer 폴더 생성
+- 🔊 [useRef](./workspace-ins/ch04-hooks#useref)
+  + 💻 [04 useRef - 값이 유지되는 데이터 관리, DOM 엘리먼트 참조](./workspace-ins/ch04-hooks/04-useRef)
+    + workspace/ch04-hooks/01-useState 폴더 복사해서 workspace/ch04-hooks/04-useRef 폴더 생성
 
 #### 오후(3시간)
+- 🔊 [useMemo](./workspace-ins/ch04-hooks#usememo)
+  + 💻 [05 useMemo - 함수의 반환값을 memoize](./workspace-ins/ch04-hooks/05-useMemo)
+    + workspace/vite-template 폴더 복사해서 workspace/ch04-hooks/05-useMemo 폴더 생성
+    + workspace/ch04-hooks/05-useMemo.html 참고해서 컴포넌트 생성
+- 🔊 [useCallback](./workspace-ins/ch04-hooks#usecallback)
+  + 💻 [06 useCallback(함수 자체를 memoize), React.memo(컴포넌트를 memoize)](./workspace-ins/ch04-hooks/06-useCallback)
+    + workspace/vite-template 폴더 복사해서 workspace/ch04-hooks/06-useCallback 폴더 생성
+    + workspace/ch04-hooks/06-useCallback.html 참고해서 컴포넌트 생성
 
+#### 과제
+```
+## 과제: TodoList 작성 2
+- workspace/ch12-app/todolist/03-hooks 예제에 리액트 훅 추가
+  1. TodoInput 컴포넌트에서 useRef를 사용해 새로운 아이템이 추가된 후 input 요소에 포커스가 갈수 있게 처리
+  2. TodoContainer 컴포넌트에서 useRef를 사용해 nextId를 만들고 할일 추가시 nextId를 사용해서 _id 값을 만들고 1씩 증가
+  3. 03-hooks/pages/todoReducer.ts 파일을 생성한 후 리듀서 함수를 만들어서 상태관리 로직을 작성하고 TodoContainer 컴포넌트에서 useState대신 useReducer를 사용하도록 수정
+    - TodoAction 타입 참고
+    ```js
+    type TodoAction = 
+    | { type: 'ADD'; value: TodoItem }
+    | { type: 'TOGGLE' | 'DELETE'; value: Pick<TodoItem, '_id'> };
+    ```
+  4. todoReducer에 immer 라이브러리를 이용해서 상태의 불변성을 유지하도록 수정
+```
 
 </details>
 
