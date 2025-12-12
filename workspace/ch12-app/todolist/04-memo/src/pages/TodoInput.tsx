@@ -1,4 +1,4 @@
-import { useRef, useState, type KeyboardEvent } from "react";
+import React, { useRef, useState, type KeyboardEvent } from "react";
 
 interface TodoInputProps {
   addItem: (title: string) => void;
@@ -33,4 +33,4 @@ function TodoInput({ addItem }: TodoInputProps){
   );
 }
 
-export default TodoInput;
+export default React.memo(TodoInput);
