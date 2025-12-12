@@ -1,14 +1,17 @@
 import type { ErrorRes, ResData, TodoInfoRes, TodoListRes } from "@/types/todo";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 const API_SERVER = 'https://fesp-api.koyeb.app/todo';
+axios.defaults.baseURL = API_SERVER;
+axios.defaults.timeout = 5000;
 
 interface FetchParams {
   url: string;
   method?: 'GET' | 'POST';
 }
 
-function useFetch<T extends TodoListRes | TodoInfoRes>(fetchParams: FetchParams) {
+function useAxios<T extends TodoListRes | TodoInfoRes>(fetchParams: FetchParams) {
   // Todo 목록을 저장할 상태 (초기값: null)
   const [ data, setData ] = useState<T | null>(null);
 
@@ -23,18 +26,15 @@ function useFetch<T extends TodoListRes | TodoInfoRes>(fetchParams: FetchParams)
       // 로딩중 상태 표시
       setLoading(true);
 
-      const res = await fetch(API_SERVER + params.url);
+      const res = await axios.get(params.url);
       console.log('res', res);
 
-      const jsonRes: ResData<T> = await res.json();
+      const jsonRes: ResData<T> = res.data;
       console.log('body', jsonRes);
 
       if(jsonRes.ok === 1){ // 타입 가드
         setData(jsonRes);
         setError(null);
-      }else{
-        // API 서버에서 에러를 응답 받을 경우(4xx, 5xx 에러)
-        throw new Error(jsonRes.message);
       }
     }catch(err){
       // 네트워크 오류 같은 에러 발생 시
@@ -54,4 +54,4 @@ function useFetch<T extends TodoListRes | TodoInfoRes>(fetchParams: FetchParams)
   return { data, error, loading };
 }
 
-export default useFetch;
+export default useAxios;
