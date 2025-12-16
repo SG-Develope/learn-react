@@ -17,10 +17,14 @@ import type { Currency } from '../types';
  */
 async function convertCurrency(amount: number, from: Currency, to: Currency) {
   // https://frankfurter.dev 참고
-  const url = `https://api.frankfurter.dev/v1/latest?base=${from}&symbols=${to}`;
+  const url = `https://api.frankfurter.dev/v1/latest?base=${from}&symbols=${to}&amount=${amount}`;
   console.log(url);
   // TODO: 환율 계산 로직 구현
-  
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log(data);
+  const result = Number(data.rates?.[to]).toLocaleString();
+  return data.message || `${amount.toLocaleString()} ${from} = ${result} ${to}`;
 }
 
 export { convertCurrency };
