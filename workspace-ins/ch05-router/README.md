@@ -616,10 +616,6 @@ const router = createBrowserRouter([
   function TodoEdit() {
     const navigate = useNavigate();
 
-    const handleEdit = () => {
-      navigate(`/todo/list/${item._id}`, {state:{from:'edit', message:'수정 완료'}})}
-    };
-
     return (
       <div>
         <button type="button" onClick={() => navigate(-1)}>수정</button>
