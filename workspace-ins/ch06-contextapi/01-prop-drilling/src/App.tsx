@@ -5,6 +5,10 @@ import './App.css';
 
 function App() {
 
+  // count 정의
+
+  // countUp() 정의
+
   useEffect(()=>{
     console.log('# App 렌더링.');
   });
@@ -15,8 +19,8 @@ function App() {
       <div id="container">
         <h1>App</h1>
         <div id="grid">
-          <Left1 />
-          <Right1 />
+          <Left1 /> {/* props로 count 전달 */}
+          <Right1 /> {/* props로 countUp 전달 */}
         </div>
       </div>
     </>
