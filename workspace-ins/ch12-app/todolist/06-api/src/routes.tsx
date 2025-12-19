@@ -7,7 +7,7 @@ import TodoAdd from "@/pages/TodoAdd";
 import TodoEdit from "@/pages/TodoEdit";
 import TodoInfo from "@/pages/TodoInfo";
 import TodoList from "@/pages/TodoList";
-import { todoListLoader } from "@/routes/todo.loader";
+import { todoInfoLoader, todoListLoader } from "@/routes/todo.loader";
 import { createBrowserRouter, Navigate } from "react-router";
 
 const router = createBrowserRouter([
@@ -29,6 +29,7 @@ const router = createBrowserRouter([
       { path: 'add', element: <TodoAdd /> },
       { 
         path: 'list/:_id', // 동적 세그먼트 지정. _id는 useParams() 훅으로 꺼낼 수 있음
+        loader: todoInfoLoader,
         element: <TodoInfo />, 
         children: [
           { path: 'edit', element: <TodoEdit /> },
