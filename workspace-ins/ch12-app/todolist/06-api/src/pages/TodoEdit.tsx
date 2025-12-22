@@ -1,4 +1,5 @@
 import type { Todo } from "@/types/todo";
+import dayjs from "dayjs";
 import { Form, useNavigate, useNavigation, useOutletContext, useParams } from "react-router";
 
 interface OutletContextProps {
@@ -33,6 +34,20 @@ function TodoEdit() {
           <br />
           <label htmlFor="done">완료 :</label>
           <input type="checkbox" id="done" name="done" defaultChecked={ item.done } />
+          <br />
+          <label htmlFor="category">카테고리</label>
+          <select id="category" name="category" defaultValue={ item.category } >
+            <option value=""></option>
+            <option value="study">공부</option>
+            <option value="hobby">취미</option>
+            <option value="etc">기타</option>
+          </select>
+          <br />
+          <label htmlFor="important">중요 :</label>
+          <input type="checkbox" id="important" name="important" defaultChecked={ item.important } />
+          <br />
+          <label htmlFor="finishAt">마감일 :</label>
+          <input type="datetime-local" id="finishAt" name="finishAt" defaultValue={ item.finishAt && dayjs(item.finishAt).format('YYYY-MM-DDTHH:mm') } />
           <br />
           <button 
             type="submit"

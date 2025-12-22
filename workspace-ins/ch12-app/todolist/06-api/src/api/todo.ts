@@ -73,10 +73,19 @@ export async function createTodo(formData: FormData): Promise<ResData<TodoInfoRe
 
 // 할일 수정
 export async function updateTodo(_id: string, formData: FormData): Promise<ResData<TodoInfoRes>> {
+  const finishAt = formData.get('finishAt');
+  if(finishAt){
+    const formatFinishAt = dayjs(finishAt as string).format('YYYY.MM.DD HH:mm:ss');
+    formData.set('finishAt', formatFinishAt);
+  }else{
+    formData.delete('finishAt');
+  }
+
+  // FormData를 일반 Object로 변환
+  const bodyRow = Object.fromEntries(formData.entries());
   const body = {
-    title: formData.get('title'),
-    content: formData.get('content'),
-    done: formData.get('done') === 'on',
+    ...bodyRow,
+    important: bodyRow.important === 'on',
   };
 
   const res = await fetch(`${API_URL}/todolist/${_id}`, {
