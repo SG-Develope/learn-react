@@ -17,6 +17,7 @@ function App() {
       <div id="container">
         <h1>App</h1>
         <div id="grid">
+          {/* TODO 3. ThemeProvider 추가 */}
           <CounterProvider>
             <Left1 />
             <Right1 />
