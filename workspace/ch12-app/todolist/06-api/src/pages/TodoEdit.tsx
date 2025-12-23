@@ -1,0 +1,91 @@
+import type { Todo } from "@/types/todo";
+import { Form, useNavigate, useNavigation, useOutletContext, useParams } from "react-router";
+
+interface OutletContextProps {
+  item: Todo;
+}
+
+function TodoEdit() {
+
+  const navigation = useNavigation();
+  const isLoading = navigation.state === 'loading';
+  const isSubmmint = navigation.state === 'submitting'
+  const isprocessing = isSubmmint || isLoading;
+
+
+
+
+  // 페이지 이동에 사용
+  const navigate = useNavigate();
+  
+  const { _id } = useParams();
+
+  // 중첩 라우팅에서 부모가 Outlet 컴포넌트의 context 속성으로 전달한 값을 자식 컴포넌트에서 꺼냄
+  const { item } = useOutletContext<OutletContextProps>();
+  console.log('item', item)
+
+  return (
+    <>
+      <h2>할일 수정</h2>
+      <div className="todo">
+        <Form method="patch">
+          <label htmlFor="title">제목 :</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            defaultValue={item.title}
+            autoFocus
+          />
+          <br />
+          <label htmlFor="content">내용 :</label>
+          <textarea
+            id="content"
+            name="content"
+            cols={23}
+            rows={5}
+            defaultValue={item.content}
+          ></textarea>
+          <br />
+          <label htmlFor="done">완료 :</label>
+          <input
+            type="checkbox"
+            id="done"
+            name="done"
+            defaultChecked={item.done}
+          />
+          <br />
+          <label htmlFor="category">카테고리 : </label>
+          <select id="category" name="category" autoFocus>
+            <option value="">선택</option>
+            <option value="study">공부</option>
+            <option value="hobby">취미</option>
+            <option value="etc">기타</option>
+          </select>
+          <br />
+          <label htmlFor="important">중요도 : </label>
+          <input type="checkbox" id="important" name="important" />
+          <br />
+          <label htmlFor="finishAt">마감일 </label>
+          <input type="datetime-local" id="finishAt" name="finishAt" />
+
+          <button type="submit" disabled={isprocessing}>
+            {isprocessing ? "수정중..." : "수정"}
+          </button>
+          <button
+            type="reset"
+            onClick={() =>
+              navigate(`/todo/list/${_id}`, {
+                state: { from: "edit", message: "수정 취소" },
+              })
+            }
+          >
+            취소
+          </button>
+        </Form>
+      </div>
+    </>
+  );
+}
+
+export default TodoEdit;
