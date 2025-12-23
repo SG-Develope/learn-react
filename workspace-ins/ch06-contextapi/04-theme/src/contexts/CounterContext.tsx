@@ -29,7 +29,11 @@ export function CounterProvider({ children }: { children: React.ReactNode }){
   };
 
   const countDown = (step: number) => {
-    setCount(count - step);
+    let newCount = count - step;
+    if(newCount < 0) {
+      newCount = 0;
+    }
+    setCount(newCount);
   };
 
   const context = { count, countUp, reset, countDown };
