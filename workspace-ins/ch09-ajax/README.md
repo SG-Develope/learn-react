@@ -546,6 +546,6 @@ function App() {
 | Render-as-you-fetch | 가져오는 동시에 렌더링 | 최적화됨 | 중복 없음 | 높음 | 성능이 중요한 대규모 프로젝트 |
 
 ### 8.4.2 선택 가이드
-* **Fetch-on-render**: 프로토타입이나 작은 프로젝트에서 빠르게 개발할 때 적합
-* **Fetch-then-render**: 부모-자식 컴포넌트 간 데이터 공유가 필요한 경우 적합
-* **Render-as-you-fetch**: 사용자 경험과 성능이 중요한 프로덕션 환경에서 적합
+* Fetch-on-render: 프로토타입이나 작은 프로젝트에서 빠르게 개발할 때 적합
+* Fetch-then-render: 부모-자식 컴포넌트 간 데이터 공유가 필요한 경우 적합
+* Render-as-you-fetch: 사용자 경험과 성능이 중요한 프로덕션 환경에서 적합
