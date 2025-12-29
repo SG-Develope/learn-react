@@ -6,7 +6,9 @@ function BoardInfo() {
 
   const requestInfo = async () => {
     // TODO 3: API 서버에 1번 게시물의 상세정보를 fetch() 요청으로 보낸다.
-
+    // API 참고: https://fesp-api.koyeb.app/market/apidocs/#/게시판/get_posts___id_
+    // client-id: 'openmarket'
+    
   };
 
   useEffect(() => {
