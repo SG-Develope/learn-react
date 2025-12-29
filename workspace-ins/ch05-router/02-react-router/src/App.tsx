@@ -1,0 +1,15 @@
+// import router from '@/routes';
+import router from '@/routes-lazy';
+// import router from '@/routes-hash';
+import './App.css';
+import { RouterProvider } from 'react-router';
+
+function App(){
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
+}
+
+export default App;

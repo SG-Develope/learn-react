@@ -3,7 +3,7 @@
 
 # 1. 목차
 
-## 1장 리액트 빌드업 
+## 1장 리액트 빌드업
 - [ch01-buildup](./workspace-ins/ch01-buildup)
 
 ## 2장 리액트 시작하기
@@ -52,7 +52,7 @@
 - React 레포지토리 README: <https://github.com/FEBC-15/react>
   - [개발 환경 구축](./README.md#3-개발-환경-구축)
 
-- 🔊 [1장 리액트 빌드업](./workspace-ins/ch01-buildup)
+- 🔊 [1장 리액트 빌드업](./workspace-ins/ch01-buildup#1장-리액트-빌드업)
   - 🔊 [1. 웹 개발의 변천사](./workspace-ins/ch01-buildup#1-웹-개발의-변천사)
 
 - 01 전통적인 방식의 Todo List 테스트(서버에서 완성된 HTML 응답) 
@@ -241,7 +241,7 @@
 <summary><h3>5일차(2025.12.02 화)</h3></summary>
 
 #### 오전(3시간)
-* 🔊 [2장 React 시작하기](./workspace-ins/ch02-start)
+* 🔊 [2장 React 시작하기](./workspace-ins/ch02-start#2장-react-시작하기)
   - 🔊 [1. React란?](./workspace-ins/ch02-start#1-react란)
   * Hello React
     - 💻 [01 Hello HTML](./workspace-ins/ch02-start/hello/01.html)
@@ -264,15 +264,6 @@
     ```
 
 * 🔊 [4. JSX](./workspace-ins/ch02-start#4-jsx)
-* 🔊 [5. 속성 (Props)](./workspace-ins/ch02-start#5-속성-props)
-
-  * 2-3 Props
-    - 💻 [10 Button 컴포넌트에 Props 전달](./workspace-ins/ch02-start/props/10)
-      + workspace/ch02-start/props 폴더에서 다음 명령 실행
-      ```sh
-      npm create vite@latest 10 -- --template react-ts
-      ```
-      + workspace/ch01-buildup/react/02/index.html에서 컴포넌트 복사
 
 </details>
 
@@ -304,17 +295,21 @@
   - 💻 [13 상태관리 대상이 객체일 경우 주의 사항](./workspace-ins/ch02-start/state/13)
     + workspace/ch02-start/state 폴더에서 vite 프로젝트 생성(13)
     + workspace/ch02-start/state/13.html 참고해서 컴포넌트 생성
-
+    
 </details>
 
 <details>
 <summary><h3>7일차(2025.12.04 목)</h3></summary>
 
 #### 오전(3시간)
-
+* 🔊 [6.3 상태의 불변성 (immutability)](./workspace-ins/ch02-start#63-상태의-불변성-immutability)
+  - 💻 [14 상태관리 대상이 복합 객체일 경우 불변성 (feat. immer)](./workspace-ins/ch02-start/state/14)
+    + workspace/ch02-start/state 폴더에서 vite 프로젝트 생성(14)
+    + workspace/ch02-start/state/sample/14.html 참고해서 컴포넌트 생성
 
 #### 오후(3시간)
-
+    + workspace 폴더에서 immer 라이브러리 설치
+      - `npm i immer`
 
 </details>
 
@@ -322,10 +317,46 @@
 <summary><h3>8일차(2025.12.05 금)</h3></summary>
 
 #### 오전(3시간)
+* 💻 workspace/vite-template 프로젝트 생성
+  - `npm create vite@latest vite-template -- --template react-ts`
+  - package.json 파일을 workspace 폴더 하위로 복사
+  - workspace 폴더에서 `npm i` 실행해서 패키지 설치
+  - [vite.config.js 파일 수정](./workspace-ins/ch02-start#viteconfigjs)
+  - eslist.config.js 파일 수정
+    ```bash
+    languageOptions: {
+      ...,
+      // eslint가 node_modules를 기준으로 프로젝트 루트를 인식하므로
+      // 프로젝트에서 자체 node_modules를 사용하지 않고 상위의 node_modules를 사용하도록 설정하면
+      // 하위의 여러 프로젝트에서 tsconfig 파일을 여러개 검색하면서 오류가 발생하므로 명시적으로 프로젝트 루트를 인식하도록 설정
+      parserOptions: {
+        tsconfigRootDir: import.meta.dirname, // 현재 파일이 있는 디렉토리의 절대 경로
+      },
+    },
+    ```
+  - 불필요한 파일 삭제
 
+* 🔊 [7. 유효성 검증](./workspace-ins/ch02-start#7-유효성-검증)
+  - 💻 [15 회원가입 입력값 상태 관리](./workspace-ins/ch02-start/state/15)
+    + workspace/vite-template 폴더 복사해서 15 폴더 생성
+    + workspace/ch02-start/state/sample/15.html 참고해서 컴포넌트 생성
 
 #### 오후(3시간)
-
+  - 💻 [16 회원가입 입력값 검증 (feat. react-hook-form)](./workspace-ins/ch02-start/state/16)
+    + workspace/ch02-start/state/15 폴더 복사해서 16 폴더 생성
+    + workspace 폴더에서 react-hook-form 라이브러리 설치
+      - `npm i react-hook-form`
+      
+#### 과제
+```
+## 주말 과제: 환율 변환기 앱 개발 step-01
+- 과제 폴더 생성
+  - workspace/homework/currency-converter 폴더 생성
+- vite 프로젝트 생성
+  - vite-template 폴더를 workspace/homework/currency-converter 폴더에 복사한 후 step-01로 폴더명 변경(workspace/homework/currency-converter/step-01)
+- https://github.com/FEBC-15/react/blob/main/sample/homework/currency-converter/step-01/index.html 파일 참고해서 App.tsx에 화면 구현
+- 가능하다면 실제 기능 구현에 도전!!!
+```
 
 </details>
 
@@ -338,10 +369,21 @@
 <summary><h3>9일차(2025.12.08 월)</h3></summary>
 
 #### 오전(3시간)
+* 주말 과제 풀이: 환율 변환기 앱 개발 step-01
+  - 💻 [환율 변환기 step-01](./workspace-ins/homework/currency-converter/step-01)
 
+* 🔊 [3장 클래스 컴포넌트와 컴포넌트의 라이프 사이클](./workspace-ins/ch03-class#3장-클래스-컴포넌트와-컴포넌트의-라이프-사이클)
+  - 💻 [01 클래스 컴포넌트](./workspace-ins/ch03-class/01-classbase)
+    + workspace/vite-template 폴더 복사해서 workspace/ch03-class/01-classbase 폴더 생성
+    + workspace/ch03-class/01-classbase.html 참고해서 컴포넌트 생성
+  - 💻 [02 클래스 컴포넌트 - 함수형 컴포넌트와 같이 사용](./workspace-ins/ch03-class/02-functionbase)
+    + workspace/ch03-class/01-classbase 폴더 복사해서 workspace/ch03-class/02-functionbase 폴더 생성
+    + workspace/ch03-class/02-functionbase.html 참고해서 컴포넌트 생성
 
 #### 오후(3시간)
-
+  - 💻 [03 클래스 컴포넌트 - 컴포넌트의 라이프 사이클](./workspace-ins/ch03-class/03-lifecycle)
+    + workspace/ch03-class/01-classbase 폴더 복사해서 workspace/ch03-class/03-lifecycle 폴더 생성
+    + workspace/ch03-class/03-lifecycle.html 참고해서 컴포넌트 생성
 
 </details>
 
@@ -349,10 +391,26 @@
 <summary><h3>10일차(2025.12.09 화)</h3></summary>
 
 #### 오전(3시간)
-
+* 🔊 [4장 리액트 훅](./workspace-ins/ch04-hooks#4장-리액트-훅)
+  - 🔊 [useState](./workspace-ins/ch04-hooks#11-usestate)
+    + 💻 [01 useState - 상태 관리](./workspace-ins/ch04-hooks/01-useState)
+      + workspace/vite-template 폴더 복사해서 workspace/ch04-hooks/01-useState 폴더 생성
+      + workspace/ch04-hooks/01-useState.html 참고해서 컴포넌트 생성
 
 #### 오후(3시간)
+- 🔊 [useEffect](./workspace-ins/ch04-hooks#12-useeffect)
+  + 💻 [02 useEffect - side effect 관리](./workspace-ins/ch04-hooks/02-useEffect)
+    + workspace/ch04-hooks/01-useState 폴더 복사해서 workspace/ch04-hooks/02-useEffect 폴더 생성
 
+* 12장 앱 개발
+  * 12-1 Todo List
+    - 💻 [01 기본 Todo List](./workspace-ins/ch12-app/todolist/01-basic)
+
+#### 과제
+```
+## 과제: TodoList 작성 1
+- ch12-app/todolist/01-basic 예제를 분석해서 각 줄마다 주석 추가
+```
 
 </details>
 
@@ -360,10 +418,38 @@
 <summary><h3>11일차(2025.12.10 수)</h3></summary>
 
 #### 오전(3시간)
+- 🔊 [useReducer](./workspace-ins/ch04-hooks#13-usereducer)
+  + 💻 [03 useReducer - 상태 관리 로직을 한곳에](./workspace-ins/ch04-hooks/03-useReducer)
+    + workspace/ch04-hooks/01-useState 폴더 복사해서 workspace/ch04-hooks/03-useReducer 폴더 생성
+- 🔊 [useRef](./workspace-ins/ch04-hooks#14-useref)
+  + 💻 [04 useRef - 값이 유지되는 데이터 관리, DOM 엘리먼트 참조](./workspace-ins/ch04-hooks/04-useRef)
+    + workspace/ch04-hooks/01-useState 폴더 복사해서 workspace/ch04-hooks/04-useRef 폴더 생성
 
+#### 오후(3시간 30분)
+- 🔊 [useMemo](./workspace-ins/ch04-hooks#15-usememo)
+  + 💻 [05 useMemo - 함수의 반환값을 memoize](./workspace-ins/ch04-hooks/05-useMemo)
+    + workspace/vite-template 폴더 복사해서 workspace/ch04-hooks/05-useMemo 폴더 생성
+    + workspace/ch04-hooks/05-useMemo.html 참고해서 컴포넌트 생성
 
-#### 오후(3시간)
-
+* 12장 앱 개발
+  * 12-1 Todo List
+    - 💻 [02 컨테이너 컴포넌트 추가](./workspace-ins/ch12-app/todolist/02-container)
+    
+#### 과제
+```
+## 과제: TodoList 작성 2
+- workspace/ch12-app/todolist/03-hooks 예제에 리액트 훅 추가
+  1. TodoInput 컴포넌트에서 useRef를 사용해 새로운 아이템이 추가된 후 input 요소에 포커스가 갈수 있게 처리
+  2. TodoContainer 컴포넌트에서 useRef를 사용해 nextId를 만들고 할일 추가시 nextId를 사용해서 _id 값을 만들고 1씩 증가
+  3. 03-hooks/pages/todoReducer.ts 파일을 생성한 후 리듀서 함수를 만들어서 상태관리 로직을 작성하고 TodoContainer 컴포넌트에서 useState대신 useReducer를 사용하도록 수정
+    - TodoAction 타입 참고
+    ```js
+    type TodoAction = 
+    | { type: 'ADD'; value: TodoItem }
+    | { type: 'TOGGLE' | 'DELETE'; value: Pick<TodoItem, '_id'> };
+    ```
+  4. todoReducer에 immer 라이브러리를 이용해서 상태의 불변성을 유지하도록 수정
+```
 
 </details>
 
@@ -371,10 +457,30 @@
 <summary><h3>12일차(2025.12.11 목)</h3></summary>
 
 #### 오전(3시간)
+* 과제 풀이: 12장 앱 개발
+  * 12-1 Todo List
+    - 💻 [03 useRef, useReducer로 상태 관리](./workspace-ins/ch12-app/todolist/03-hooks)
 
+- 🔊 [useCallback](./workspace-ins/ch04-hooks#16-usecallback)
+  + 💻 [06 useCallback(함수 자체를 memoize), React.memo(컴포넌트를 memoize)](./workspace-ins/ch04-hooks/06-useCallback)
+    + workspace/vite-template 폴더 복사해서 workspace/ch04-hooks/06-useCallback 폴더 생성
+    + workspace/ch04-hooks/06-useCallback.html 참고해서 컴포넌트 생성
 
 #### 오후(3시간)
+- 🔊 [리액트 컴파일러](./workspace-ins/ch04-hooks#2-리액트-컴파일러)
+  + 💻 [07 React Compiler를 사용한 메모이제이션](./workspace-ins/ch04-hooks/07-useCallback-RC)
+    + workspace/ch04-hooks/06-useCallback 폴더 복사해서 workspace/ch04-hooks/07-useCallback-RC 폴더 생성
+* 🔊 [Custom Hook](./workspace-ins/ch04-hooks#17-custom-hook)
+  - 💻 [08 customHook - useCounter 커스텀 훅 사용](./workspace-ins/ch04-hooks/08-customCounter)
+    + workspace/ch04-hooks/01-useState 폴더 복사해서 workspace/ch04-hooks/08-customCounter 폴더 생성
 
+#### 과제
+```
+## 과제: TodoList 작성 3
+- workspace/ch12-app/todolist/04-memo 예제에 메모이제이션 추가
+  1. TodoItem 컴포넌트에서 React.memo를 사용해 불필요한 리렌더링 방지
+  2. TodoContainer 컴포넌트에서 useCallback을 사용해 addItem, toggleDone, deleteItem 함수를 메모이제이션
+```
 
 </details>
 
@@ -382,10 +488,28 @@
 <summary><h3>13일차(2025.12.12 금)</h3></summary>
 
 #### 오전(3시간)
+* 과제 풀이: 12장 앱 개발
+  * 12-1 Todo List  
+    - 💻 [04 React.memo, useCallback으로 메모이제이션](./workspace-ins/ch12-app/todolist/04-memo)
 
+- 🔊 [Custom Hook](./workspace-ins/ch04-hooks#17-custom-hook)
+  - 💻 [09 customHook - 커스텀 훅 없이 fetch API 사용](./workspace-ins/ch04-hooks/09-fetch)
+    + workspace/vite-template 폴더 복사해서 workspace/ch04-hooks/09-fetch 폴더 생성
+    + workspace/ch04-hooks/09-fetch.html 참고해서 컴포넌트 생성
 
 #### 오후(3시간)
+  - 💻 [10 customHook - useFatch, useAxios 커스텀 훅 사용](./workspace-ins/ch04-hooks/10-customFetch)
+    + workspace/ch04-hooks/09-fetch 폴더 복사해서 workspace/ch04-hooks/10-customFetch 폴더 생성
+    + workspace/ch04-hooks/10-customFetch 참고해서 컴포넌트 생성
 
+#### 과제
+```
+## 주말 과제: 환율 변환기 앱 개발 step-02
+- 과제 폴더 복사
+  - sample/homework/currency-converter/step-02 폴더를 workspace/homework/currency-converter 폴더에 복사(workspace/homework/currency-converter/step-02)
+- 기능 구현
+  - step-02에 미리 만들어져 있는 컴포넌트를 완성해서 환율 변환기 기능 구현
+```
 
 </details>
 
@@ -398,10 +522,16 @@
 <summary><h3>14일차(2025.12.16 화)</h3></summary>
 
 #### 오전(3시간)
-
+* 주말 과제 풀이: 환율 변환기 앱 개발 step-02
+  - 💻 [환율 변환기 step-02](./workspace-ins/homework/currency-converter/step-02)
 
 #### 오후(3시간)
-
+* 🔊 [5장 리액트 라우터](./workspace-ins/ch05-router#5장-리액트-라우터)
+  * 🔊 [1. 클라이언트 측 라우팅이란?](./workspace-ins/ch05-router#1-클라이언트-측-라우팅이란)
+    - 💻 [01 클라이언트 라우팅 직접 구현](./workspace-ins/ch05-router/01-my-router)
+  * 🔊 [2. 리액트 라우터란?](./workspace-ins/ch05-router#2-리액트-라우터란)
+  * 🔊 [3. 리액트 라우터가 제공하는 라우터](./workspace-ins/ch05-router#3-리액트-라우터가-제공하는-라우터)
+    - 💻 [02 리액트 라우터 사용](./workspace-ins/ch05-router/02-react-router)
 
 </details>
 
@@ -409,10 +539,20 @@
 <summary><h3>15일차(2025.12.17 수)</h3></summary>
 
 #### 오전(3시간)
+* 🔊 [4. 리액트 라우터가 제공하는 주요 컴포넌트](./workspace-ins/ch05-router#4-리액트-라우터가-제공하는-주요-컴포넌트)
 
+* 12장 앱 개발
+  * 12-1 Todo List
+    - 💻 [05 리액트 라우터 적용](./workspace-ins/ch12-app/todolist/05-router)
 
 #### 오후(3시간)
-
+* 5장 리액트 라우터
+  * 🔊 [5. 리액트 라우터가 제공하는 주요 기능](./workspace-ins/ch05-router#5-리액트-라우터가-제공하는-주요-기능)
+  * 🔊 [6. 리액트 라우터가 제공하는 주요 Hook](./workspace-ins/ch05-router#6-리액트-라우터가-제공하는-주요-hook)
+  
+* 12장 앱 개발
+  * 12-1 Todo List
+    - 💻 [05 리액트 라우터 적용](./workspace-ins/ch12-app/todolist/05-router)
 
 </details>
 
@@ -420,10 +560,22 @@
 <summary><h3>16일차(2025.12.18 목)</h3></summary>
 
 #### 오전(3시간)
-
+* 12장 앱 개발 - 12-1 Todo List
+  - 💻 [05 리액트 라우터 적용](./workspace-ins/ch12-app/todolist/05-router)
+    - 1. 페이지네이션 기능 추가 - [Pagination.tsx](./workspace-ins/ch12-app/todolist/05-router/src/pages/Pagination.tsx)
+    - 2. 검색 기능 추가
+    - 3. useNavigate(): 프로그래밍 방식으로 페이지 이동
+    - 4. useLocation(): 요청된 URL 정보를 담고 있는 location 객체 반환
 
 #### 오후(3시간)
+* 12장 앱 개발 - 12-1 Todo List
+  - 💻 [05 리액트 라우터 적용](./workspace-ins/ch12-app/todolist/05-router)
+    - 1. useOutletContect(): 중첩 라우팅에서 부모가 Outlet 컴포넌트의 context 속성으로 전달한 값을 자식 컴포넌트에서 꺼냄
 
+* 5장 리액트 라우터
+  - 💻 [02 리액트 라우터 사용](./workspace-ins/ch05-router/02-react-router)
+    - lazy loading 적용
+    - Suspense 컴포넌트 사용
 
 </details>
 
@@ -432,10 +584,44 @@
 
 #### 오전(3시간)
 
+* 12장 앱 개발 - 12-1 Todo List
+  - 💻 [06 API 서버 연동](./workspace-ins/ch12-app/todolist/06-api)
+    + 할일 상세 조회 api 호출 추가
+    + 할일 상세 조회 loader 추가
+    + 할일 등록, 수정, 삭제 api 호출 추가
 
 #### 오후(3시간)
+* 12장 앱 개발 - 12-1 Todo List
+  - 💻 [06 API 서버 연동](./workspace-ins/ch12-app/todolist/06-api)
+    + 할일 등록, 수정, 삭제 action 추가
+    + 할일 등록 시 두번 클릭 방지(useNavigation 훅을 이용한 submit 상태 추적)
 
+#### 과제
+```
+## 주말 과제: Todo List에 기능 추가
+- workspace/ch12-app/todolist/06-api 폴더에서 작업
 
+### 수정, 삭제 버튼이 두번 클릭되지 않게 바꾸기
+- 할일 수정중에 `수정` 버튼을 `수정중...`으로 바꾸고 비활성화
+- 할일 삭제중에 `삭제` 버튼을 `삭제중...`으로 바꾸고 비활성화
+
+### 등록/수정 화면에 항목 추가
+- `카테고리` 추가
+  - 카테고리 항목은 `공부`, `취미`, `기타`로 구분해서 select로 제공
+  - `category` 속성으로 study, hobby, etc 중 하나로 API 서버에 전송
+  - 초기값은 비어있음
+- `중요` 추가
+  - 체크박스로 제공
+  - 체크했을 경우 `important` 속성으로 true 값을 API 서버에 전송
+- `마감일` 추가
+  - `<input type="datetime-local">`로 제공
+  - 선택했을 경우 `finishAt` 속성으로 `YYYY.MM.DD HH:mm:ss` 형태로 API 서버에 전송
+  - 날짜 포맷 변경은 [dayjs](https://day.js.org) 사용
+  - https://github.com/FEBC-15/js/blob/main/workspace-ins/ch07/ex07-09-03.js 예제 참고
+
+### 상세조회 화면에 항목 추가
+- `카테고리`, `중요`, `마감일`이 등록되어 있을 경우 상세조회 화면에 추가로 보여줌
+```
 </details>
 
 </details>
@@ -447,10 +633,17 @@
 <summary><h3>18일차(2025.12.22 월)</h3></summary>
 
 #### 오전(3시간)
-
+* 주말 과제 풀이: Todo List에 기능 추가
+  - 💻 [06 API 서버 연동](./workspace-ins/ch12-app/todolist/06-api)
+    + 수정, 삭제 버튼이 두번 클릭되지 않게 바꾸기
+    + 등록/수정 화면에 카테고리, 중요, 마감일 항목 추가
 
 #### 오후(3시간)
-
+* 🔊 [6장 Context API](./workspace-ins/ch06-contextapi)
+  * 🔊 [1. Context API란?](./workspace-ins/ch06-contextapi#1-context-api란)
+    - 💻 [01 Prop Drilling](./workspace-ins/ch06-contextapi/01-prop-drilling)
+  * 🔊 [2. 사용 방법](./workspace-ins/ch06-contextapi#2-사용-방법)
+    - 💻 [02 Context API - useContext 훅](./workspace-ins/ch06-contextapi/02-useContext)
 
 </details>
 
@@ -458,10 +651,23 @@
 <summary><h3>19일차(2025.12.23 화)</h3></summary>
 
 #### 오전(3시간)
-
+  * 🔊 [2. 사용 방법](./workspace-ins/ch06-contextapi#2-사용-방법)
+    - 💻 [03 Context API - use 훅](./workspace-ins/ch06-contextapi/03-use)
+    - 💻 [04 Context API - 테마 변경](./workspace-ins/ch06-contextapi/04-theme)
 
 #### 오후(3시간)
+* 🔊 [7장 전역 상태 관리](./workspace-ins/ch07-globalstate#7장-전역-상태-관리)
+  * 🔊 [2. Redux](./workspace-ins/ch07-globalstate#2-redux)
+    - 💻 [01 Redux](./workspace-ins/ch07-globalstate/01-redux)
 
+#### 과제
+```
+## 리액트의 전역 상태 관리 라이브러리가 어떤게 있는지 조사한 후 마음에 드는 라이브러리를 이용해서 counter 기능 구현
+- sample/07/workspace/ch07-globalstate/01-redux 폴더를 workspace/homework 하위로 복사 후 라이브러리 이름에 맞게 폴더명 수정
+  - 예시, recoil을 사용할 경우 workspace/homework/recoil 폴더로 이름 변경
+- Right3 컴포넌트의 +1 버튼 클릭 시 Left3 컴포넌트의 count가 증가하는 기능 구현
+  - 개발자도구 콘솔에 `#### Left3 렌더링.`만 출력되는지 확인
+```
 
 </details>
 
@@ -469,10 +675,33 @@
 <summary><h3>20일차(2025.12.24 수)</h3></summary>
 
 #### 오전(3시간)
-
+  * 🔊 [2. Redux](./workspace-ins/ch07-globalstate#2-redux)
+    - 💻 [02 Redux Toolkit](./workspace-ins/ch07-globalstate/02-redux-toolkit)
+  * 🔊 [3. Jotai](./workspace-ins/ch07-globalstate#3-jotai)
+    - 💻 [02 Jotai](./workspace-ins/ch07-globalstate/02-jotai)
 
 #### 오후(3시간)
+  * 🔊 [4. Zustand](./workspace-ins/ch07-globalstate#4-zustand)
+    - 💻 [03 Zustand](./workspace-ins/ch07-globalstate/03-zustand)
 
+* 🔊 [8장 리액트에서 CSS 사용](./workspace-ins/ch08-css#8장-리액트에서-css-사용)
+  * 🔊 [1 기본 CSS 적용 방법](./workspace-ins/ch08-css#1-기본-css-적용-방법)
+    - 💻 [01 바닐라 CSS](./workspace-ins/ch08-css/01-css)
+  * 🔊 [2 CSS 모듈](./workspace-ins/ch08-css#2-css-모듈)
+    - 💻 [02 CSS Module](./workspace-ins/ch08-css/02-module)
+  * 🔊 [3 CSS-in-JS](./workspace-ins/ch08-css#3-css-in-js)
+    - 💻 [03 Styled Components](./workspace-ins/ch08-css/03-styled)
+  * 🔊 [4 Tailwind CSS](./workspace-ins/ch08-css#4-tailwind-css)
+    - 💻 [04 Tailwind CSS](./workspace-ins/ch08-css/04-tailwind)
+
+#### 과제
+```
+## Todo List에 스타일 적용
+- sample/homework/todolist-cssmodule 폴더와 todolist-tailwind 폴더를 workspace/homework 하위로 복사
+  - todolist-cssmodule, todolist-tailwind 폴더는 workspace/ch12-app/todolist/06-api까지 작성된 코드입니다.
+- workspace/homework/todolist-cssmodule: CSS 모듈을 이용해서 스타일 적용
+- workspace/homework/todolist-tailwind: Tailwind CSS를 이용해서 스타일 적용
+```
 
 </details>
 

@@ -1,6 +1,29 @@
 # 2장 React 시작하기
 * 코드 실행(GitHub Page): <https://febc-15.github.io/react/workspace-ins/index.html#02>
 
+## 목차
+- [1. React란?](#1-react란)
+  - [1.1 SPA 개발](#11-spa-개발)
+  - [1.2 주요 특징](#12-주요-특징)
+- [2. React 개발 환경 구축](#2-react-개발-환경-구축)
+  - [2.1 프론트엔드 빌드 도구](#21-프론트엔드-빌드-도구)
+- [3. React 애플리케이션 배포](#3-react-애플리케이션-배포)
+  - [3.1 프로젝트 빌드](#31-프로젝트-빌드)
+  - [3.2 빌드된 파일로 서버 실행](#32-빌드된-파일로-서버-실행)
+- [4. JSX](#4-jsx)
+  - [4.1 JSX란?](#41-jsx란)
+  - [4.2 JSX 규칙](#42-jsx-규칙)
+- [5. 속성 (Props)](#5-속성-props)
+- [6. 상태 (State)](#6-상태-state)
+  - [6.1 React.useState()](#61-reactusestate)
+  - [6.2 상태 사용시 유의사항](#62-상태-사용시-유의사항)
+  - [6.3 상태의 불변성 (immutability)](#63-상태의-불변성-immutability)
+- [7. 유효성 검증](#7-유효성-검증)
+  - [7.1 prop-types](#71-prop-types)
+  - [7.2 Form의 유효성 검증](#72-form의-유효성-검증)
+- [8. 컴포넌트 구분](#8-컴포넌트-구분)
+  - [8.1 컨테이너 컴포넌트와 표현 컴포넌트](#81-컨테이너-컴포넌트와-표현-컴포넌트)
+
 # 1. React란?
 * Meta(구 Facebook)에서 개발한 오픈소스 자바스크립트 라이브러리
 * 사용자 인터페이스(UI)를 구축하기 위한 선언적이고 효율적이며 유연한 JavaScript 라이브러리
@@ -177,9 +200,9 @@
     "compilerOptions": {
       "baseUrl": ".",
       "paths": {
-        "@/*": ["src/*"],
         "@components/*": ["src/components/*"],
         "@pages/*": ["src/pages/*"],
+        "@/*": ["src/*"],
       },
     }
   }
@@ -351,7 +374,7 @@
 
 * JSX에서 style 속성 추가
   ```jsx
-  <div style={{ backgroundColor: 'red', fontSize: '20px' }}>Hello</div>
+  <div style={ { backgroundColor: 'red', fontSize: '20px' } }>Hello</div>
   ```
 
 * JSX에서 style 속성을 동적으로 추가
@@ -368,15 +391,15 @@
   ```jsx
   const color = 'blue';
   const size = 24;
-  <div style={{ color: color, fontSize: `${size}px` }}>Hello</div>
+  <div style={ { color: color, fontSize: `${size}px` } }>Hello</div>
   ```
 
 * 주의사항
   - 숫자 값은 자동으로 `px` 단위가 붙지만, 단위가 필요한 경우 문자열로 작성해야 함
     ```jsx
-    <div style={{ width: 100 }}>        // width: 100px
-    <div style={{ width: '100%' }}>     // width: 100%
-    <div style={{ width: '100rem' }}>   // width: 100rem
+    <div style={ { width: 100 } }>        // width: 100px
+    <div style={ { width: '100%' } }>     // width: 100%
+    <div style={ { width: '100rem' } }>   // width: 100rem
     ```
 
 6 보간된 HTML 문자열은 인코딩됨
@@ -397,9 +420,9 @@
   1. dangerouslySetInnerHTML 속성을 사용하면 HTML 태그를 인코딩하지 않음
     ```jsx
     const App(){
-      // { msg }를 <span dangerouslySetInnerHTML={{ __html: msg }}></span>로 변경
+      // { msg }를 <span dangerouslySetInnerHTML={ { __html: msg } }></span>로 변경
       const msg = '<i>World</i>';
-      return <span>Hello <span dangerouslySetInnerHTML={{ __html: msg }}></span></span>
+      return <span>Hello <span dangerouslySetInnerHTML={ { __html: msg } }></span></span>
     }
     ```
   2. JSX는 XSS 공격에 안전하므로 JSX를 사용
@@ -790,7 +813,7 @@ function TodoList({ list }){
 # 8. 컴포넌트 구분
 
 ## 8.1 컨테이너 컴포넌트와 표현 컴포넌트
-* 상태와 비즈니스 로직을 처리하는 컨테이너와 UI를 담당하는 컨테이너를 분리해서 설계
+* 상태와 비즈니스 로직을 처리하는 컴포넌트와 UI를 담당하는 컴포넌트를 분리해서 설계
 * 각 컴포넌트의 역할이 명확해지고 코드의 유지보수성이 향상
 * 표현 컴포넌트에서는 상태 관련 로직이 제거되므로 상태 관리와 UI 로직을 분리할 수 있으며, 결과적으로 상태 추적과 디버깅이 쉬워짐
 
