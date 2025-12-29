@@ -1,2 +1,19 @@
 // 코드 참고: https://github.com/FEBC-15/react/blob/main/workspace-ins/ch12-app/todolist/06-api/src/types/todo.ts
 // API 참고: https://fesp-api.koyeb.app/market/apidocs/#/게시판
+
+// TODO 2: 타입 추가
+
+
+
+//댓글조회 
+export type Reply = {
+  _id: string;
+  content: string;
+};
+
+//게시물 상세조회
+export type Board = {
+  title: string;
+  content: string;
+  replies: Reply[];
+};
