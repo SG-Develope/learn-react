@@ -1,6 +1,9 @@
 import CommentList from "@/pages/board/CommentList";
 import type { BoardInfo as BoardInfoType, BoardInfoRes, ResData } from "@/types/board";
+import { getAxiosInstance } from "@/utils/axiosInstance";
 import { useEffect, useState } from "react";
+
+const axiosInstance = getAxiosInstance();
 
 function BoardInfo() {
   // data, error, isLoading 상태 관리
@@ -14,15 +17,8 @@ function BoardInfo() {
     // client-id: 'openmarket'
     try{
       setIsLoading(true);
-      const response = await fetch('https://fesp-api.koyeb.app/market/posts/1', {
-        headers: {
-          'Client-Id': 'openmarket'
-        }
-      });
-
-      console.log('respons', response);
-      const jsonBody: ResData<BoardInfoRes> = await response.json();
-      console.log('jsonBody', jsonBody);
+      const response = await axiosInstance.get<ResData<BoardInfoRes>>('/posts/2');
+      const jsonBody = response.data;
 
       if(jsonBody.ok){ // 서버의 응답 상태코드가 2xx일 경우 ok는 true가 됨
         setData(jsonBody.item);
@@ -54,7 +50,7 @@ function BoardInfo() {
       { error && <><h2>에러 발생!!!</h2><p>{ error.message }</p></> }
 
       { data && <>
-        <h2>{ data.title }</h2>
+        <h2>{ data._id } 번 게시물: { data.title }</h2>
         <p>{ data.content }</p>
       </> }
       

@@ -1,6 +1,9 @@
 import CommentNew from "@/pages/board/CommentNew";
 import type { BoardReply, BoardReplyListRes, ResData } from "@/types/board";
+import { getAxiosInstance } from "@/utils/axiosInstance";
 import { useEffect, useState } from "react";
+
+const axiosInstance = getAxiosInstance();
 
 function CommentList() {
   // data, isLoading, error 상태 관리
@@ -14,15 +17,8 @@ function CommentList() {
     // client-id: 'openmarket'
     try{
       setIsLoading(true);
-      const response = await fetch('https://fesp-api.koyeb.app/market/posts/1/replies', {
-        headers: {
-          'Client-Id': 'openmarket'
-        }
-      });
-
-      console.log('respons', response);
-      const jsonBody: ResData<BoardReplyListRes> = await response.json();
-      console.log('jsonBody', jsonBody);
+      const response = await axiosInstance.get<ResData<BoardReplyListRes>>('/posts/2/replies');
+      const jsonBody = response.data;
 
       if(jsonBody.ok){ // 서버의 응답 상태코드가 2xx일 경우 ok는 true가 됨
         setData(jsonBody.item);
