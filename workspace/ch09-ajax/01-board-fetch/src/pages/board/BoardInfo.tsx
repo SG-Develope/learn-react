@@ -28,7 +28,7 @@ function BoardInfo() {
 
     try {
       const response = await fetch(
-        "https://fesp-api.koyeb.app/market/posts/1",
+        "https://fesp-api.koyeb.app/market/posts/124234",
         {
           headers: { "client-id": "openmarket" },
         }
@@ -38,6 +38,7 @@ function BoardInfo() {
       setBoard(result.item); // API에서 item 안에 title, content 있음
       
     } catch (err) {
+      console.log("들어옴")
       setError(err as Error);
     } finally {
       setIsLoading(false);

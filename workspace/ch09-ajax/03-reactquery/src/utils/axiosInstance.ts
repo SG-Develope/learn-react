@@ -4,10 +4,10 @@
 import axios from "axios";
 
 const API_SERVER = 'https://fesp-api.koyeb.app/market';
+
 export function getAxiosInstance() {
   // TODO 1: axios instance를 생성해서 반환하는 getAxiosInstance() 함수 작성
-
-const instance = axios.create({
+  const instance = axios.create({
     baseURL: API_SERVER, // 기본 URL
     timeout: 1000*5,
     headers: {
@@ -51,6 +51,5 @@ const instance = axios.create({
   });
 
   return instance;
- 
 }
 
