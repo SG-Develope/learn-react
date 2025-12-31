@@ -1,16 +1,20 @@
 import type { BoardReplyCreateRes } from "@/types/board";
 import { getAxiosInstance } from "@/utils/axiosInstance";
-import { useMutation } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 
 
 
-function CommentNew() {
+function CommentNew({postId} : {postId : number}) {
 
 const axiosInstance = getAxiosInstance();
+ const queryClient = useQueryClient();
 
-  const { mutate: requestAddComment } = useMutation({
-    mutationFn: (formData:FormData) => axiosInstance.post<BoardReplyCreateRes>('/posts/3/replies', formData),
+  const { mutate: requestAddComment, isPending } = useMutation({
+    mutationFn: (formData:FormData) => axiosInstance.post<BoardReplyCreateRes>(`/posts/${postId}/replies`, formData),
+    onSuccess: () => {
+     queryClient.invalidateQueries({queryKey: ['posts', `${postId}`, 'replies']});
+    }
 
   });
   
@@ -30,7 +34,7 @@ const axiosInstance = getAxiosInstance();
       <h4>댓글 등록</h4>
       <form onSubmit={handleAddComment}>
         <textarea rows={3} cols={30} placeholder="댓글 내용" name="content"></textarea><br />
-        <button type="submit" >등록</button>
+        <button type="submit" disabled={isPending}>등록</button>
       </form>
     </>
   );

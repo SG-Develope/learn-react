@@ -2,17 +2,19 @@ import CommentNew from "@/pages/board/CommentNew";
 import type { BoardInfoRes, BoardReply, BoardReplyListRes, ResData } from "@/types/board";
 import { getAxiosInstance } from "@/utils/axiosInstance";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
 
 const axiosInstance = getAxiosInstance();
 
-function CommentList() {
+function CommentList({postId} : {postId : number}) {
+
+  console.log("commenList id", postId);
 
   const {data, isLoading, error} = useQuery({
-    queryKey: ['posts', '3', 'replies'],
-    queryFn: () => axiosInstance.get<BoardReplyListRes>('/posts/3'),
+    queryKey: ['posts', postId, 'replies'],
+    queryFn: () => axiosInstance.get<BoardReplyListRes>(`/posts/${postId}/replies`),
     select: (response) => response.data.item, 
-
+    staleTime:1000*10,
+    // refetchInterval: 3000,
   });
   const list = data?.map(reply => <li key={reply._id}>{reply.content}</li>);
 
@@ -28,7 +30,7 @@ function CommentList() {
         </ul>
       </> }
 
-      <CommentNew />
+      <CommentNew postId={postId}/>
     </>
   );
 }
