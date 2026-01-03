@@ -145,10 +145,10 @@ export default defineConfig({
     ```
     
 ## 1.2 UI 컴포넌트 작성
-* 참고: https://github.com/FEBC-15/react/tree/main/workspace-ins/ch02-start#4-jsx
+* 참고: https://github.com/FEBC-15/react/tree/main/workspace-ins/ch02-start#4-tsx
 * workspace/ch11-skeleton/lion-board-template 폴더의 html 코드를 컴포넌트로 이동
-  - header 태그는 Header.jsx에서 사용
-  - footer 태그는 Footer.jsx에서 사용
+  - header 태그는 Header.tsx에서 사용
+  - footer 태그는 Footer.tsx에서 사용
   - div id="main" 태그는 각 페이지의 컴포넌트에서 사용
   - JSX 문법에 맞게 수정
 
@@ -411,8 +411,8 @@ export default MainPage;
   ```
 
 ### 1.3.2 RouterProvider 추가
-* main.tsx 수정
-  ```jsx
+* App.tsx 수정
+  ```tsx
   import { RouterProvider } from "react-router-dom";
   import router from "@/routes";
 
