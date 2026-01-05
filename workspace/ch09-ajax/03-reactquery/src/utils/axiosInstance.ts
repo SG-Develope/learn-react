@@ -4,12 +4,12 @@
 import axios from "axios";
 
 const API_SERVER = 'https://fesp-api.koyeb.app/market';
+
 export function getAxiosInstance() {
   // TODO 1: axios instance를 생성해서 반환하는 getAxiosInstance() 함수 작성
-
-const instance = axios.create({
+  const instance = axios.create({
     baseURL: API_SERVER, // 기본 URL
-    timeout: 1000*5,
+    timeout: 1000*30,
     headers: {
       'Content-Type': 'application/json', // 요청 바디의 데이터 타입
       // 설정하지 않으면 크롬일 경우 "application/json, text/plain, */*"
@@ -23,7 +23,7 @@ const instance = axios.create({
     console.log('요청 인터셉터 호출', config);
     // 요청이 전달되기 전에 필요한 공통 작업 수행
     config.params = {
-      // delay: 3000,
+      delay: 1000*10,
       ...config.params, // 기존 쿼리스트링 복사
     };
     return config;
@@ -51,6 +51,5 @@ const instance = axios.create({
   });
 
   return instance;
- 
 }
 
