@@ -5,7 +5,8 @@ export const metadata: Metadata = {
   description: '게시글 등록 페이지입니다.',
 }
 
-export default function PostNew(){
+export default function PostNew() {
+  
   return (
     <h1>게시글 등록</h1>
   );
