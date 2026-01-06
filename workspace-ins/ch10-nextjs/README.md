@@ -1034,7 +1034,7 @@ export async function createPost(formData: FormData) {
 <img src="../../images/nextjs/project-organization-colocation.png" width="800">
 
 ### 4.9.1 프로젝트 폴더 구조 전략
-* 프로젝트 파일과 폴더를 어떻게 구성할 것인지에 대한 여러가지 전략을 소개
+* 프로젝트 파일과 폴더를 어떻게 구성할 것인지에 대한 여러가지 전략
 * 여러 전략 중 팀에게 적합한 방식을 선택하고 일관성을 유지해야 함
 
 #### 프로젝트 파일을 app 외부에 저장
