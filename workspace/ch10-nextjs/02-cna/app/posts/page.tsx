@@ -1,3 +1,4 @@
+import { ErrorRes, PostListRes } from "@/types";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -12,10 +13,16 @@ export default async function PostList() {
   // await new Promise(resolve => setTimeout(resolve, 1000*3));
   
   const res = await fetch("http://localhost:3000/api/posts");
+
   
-  const data = await res.json();
+  
+  const data: PostListRes | ErrorRes = await res.json();
   console.log("게시물 목록조회", data);
 
+  if (data.ok===0) {
+    return '로딩중';
+  }
+  
   const list = data.item.map((item: { _id: number; title: string }) => {
     return (
       <li key={item._id}>

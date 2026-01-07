@@ -1,3 +1,4 @@
+import { getPost } from "@/lib/post";
 import { Metadata } from "next";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
@@ -32,11 +33,16 @@ export default async function PostInfo({ params }: { params: Promise<{ id: strin
   // await new Promise(resolve => setTimeout(resolve, 1000*3));
   const { id } = await params;
 
-  if (id === '444') throw new Error('444에러!!!');
+  // if (id === '444') throw new Error('444에러!!!');
+
+  const data = await getPost(id);
+  console.log(data);
+  return (<>
+    <h1>{id} 번 게시물 상세 조회</h1>
+    <h2>{data.title}</h2>
+    <textarea className="w-full h-full outline-none" defaultValue={data.content}></textarea>
+  </>)
 
 
-  console.log(id, '게시물 조회함');
-  return (
-    <h1>{ id }번 게시물 상세 조회</h1>
-  );
+
 }
